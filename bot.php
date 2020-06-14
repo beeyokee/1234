@@ -1,5 +1,6 @@
 <?php
-$access_token = 'XXXXXXXXXXXXXXXXXXXXXXX';
+$access_token = 'ZPMWIumwk4gNy3S78P5FX+IWIACedSuIu1KvFh831VCbs5WXP9NcTGYJxBoRI04YKaD0cE7rCa/d0Vb5ic7aVJ/zhhVHJi28qKDp3CPfmcsnztvrTeJ6ajSe09YrfE9ia06aPmGVz+a+tsMMmONtKAdB04t89/1O/w1cDnyilFU=';
+$userId = 'ca57069916be344d643428e04f2f3fb7';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -9,10 +10,17 @@ if (!is_null($events['events'])) {
     // Loop through each event
     foreach ($events['events'] as $event) {
         // Reply only when message sent is in 'text' format
-        if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+        if ($event['type'] == 'message' && $event['message']['type'] == 'text'){
             // Get text sent
             $text = $event['message']['text'];
-            // Get replyToken
+            if ($text == "สวัสดี"
+                or $text == "สวัสดีครับ" 
+                or $text == "open" 
+                or $text == "hi"
+                or $text == "Hi"
+          ){
+            $text = $text." คุณ ".$Name."สวัสดีครับ";    
+            }
             $replyToken = $event['replyToken'];
             // Build message to reply back
             $messages = [
@@ -40,3 +48,5 @@ if (!is_null($events['events'])) {
     }
 }
 echo "OK";
+?>
+© 2020 GitHub, Inc.
